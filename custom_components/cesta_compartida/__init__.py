@@ -6,6 +6,10 @@ import logging
 import os
 from typing import Any
 
+from homeassistant.components.frontend import (
+    async_register_built_in_panel,
+    async_remove_panel,
+)
 from homeassistant.components.http import StaticPathConfig
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
@@ -67,7 +71,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         )
 
         # Register custom sidebar panel
-        hass.components.frontend.async_register_built_in_panel(
+        async_register_built_in_panel(
+            hass,
             component_name="iframe",
             sidebar_title=TITLE,
             sidebar_icon="mdi:cart-variant",
@@ -93,6 +98,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
         hass.data[DOMAIN].pop(entry.entry_id)
-        hass.components.frontend.async_remove_panel(FRONTEND_URL_PATH)
+        async_remove_panel(hass, FRONTEND_URL_PATH)
 
     return unload_ok

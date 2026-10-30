@@ -1,10 +1,10 @@
 {
   "domain": "cesta_compartida",
   "name": "Cesta Compartida",
-  "codeowners": ["@vpez"],
+  "codeowners": ["@h3r"],
   "config_flow": true,
-  "documentation": "https://github.com/vpez/ha-cesta-compartida",
-  "issue_tracker": "https://github.com/vpez/ha-cesta-compartida/issues",
+  "documentation": "https://github.com/h3r/ha-blackboard",
+  "issue_tracker": "https://github.com/h3r/ha-blackboard/issues",
   "integration_type": "hub",
   "iot_class": "local_push",
   "version": "1.0.0",

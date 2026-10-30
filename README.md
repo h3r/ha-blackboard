@@ -28,7 +28,7 @@ Una integración y panel moderno para **Home Assistant** que transforma la gesti
 2. Ve a los tres puntos de la esquina superior derecha y selecciona **Repositorios personalizados**.
 3. Añade la URL de este repositorio:
    ```text
-   https://github.com/vpez/ha-cesta-compartida
+   https://github.com/h3r/ha-blackboard
    ```
 4. Selecciona la categoría **Integración** (*Integration*) y pulsa **Añadir**.
 5. Busca **Cesta Compartida**, pulsa **Descargar** y reinicia Home Assistant cuando se te solicite.

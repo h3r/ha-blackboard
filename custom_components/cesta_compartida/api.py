@@ -189,8 +189,9 @@ class CestaVisionView(HomeAssistantView):
         if not image_base64:
             return _cors_json_response({"error": "Missing image payload"}, status=400)
 
-        clean_base64 = re.sub(r"^data:image/[^;]+;base64,", "", image_base64)
-        mime_type = body.get("mimeType") or "image/png"
+        clean_base64 = re.sub(r"^data:[^;]+;base64,", "", image_base64).strip()
+        raw_mime = body.get("mimeType") or "image/png"
+        mime_type = raw_mime.split(";")[0].strip() or "image/png"
 
         session = async_get_clientsession(self.hass)
         gemini_url = (

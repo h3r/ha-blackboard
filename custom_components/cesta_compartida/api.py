@@ -37,14 +37,11 @@ class CestaListsView(HomeAssistantView):
     url = "/api/cesta_compartida/lists/{code}"
     name = "api:cesta_compartida:lists"
     requires_auth = False
+    cors_allowed = True
 
     def __init__(self, storage: CestaStorage) -> None:
         """Initialize list view."""
         self.storage = storage
-
-    async def options(self, request: web.Request, code: str) -> web.Response:
-        """Handle CORS preflight."""
-        return _cors_json_response({})
 
     async def get(self, request: web.Request, code: str) -> web.Response:
         """Get shopping list state."""
@@ -70,14 +67,11 @@ class CestaProductsView(HomeAssistantView):
     url = "/api/cesta_compartida/products"
     name = "api:cesta_compartida:products"
     requires_auth = False
+    cors_allowed = True
 
     def __init__(self, storage: CestaStorage) -> None:
         """Initialize products view."""
         self.storage = storage
-
-    async def options(self, request: web.Request) -> web.Response:
-        """Handle CORS preflight."""
-        return _cors_json_response({})
 
     async def get(self, request: web.Request) -> web.Response:
         """Get all catalog products."""
@@ -90,15 +84,12 @@ class CestaProductDetailView(HomeAssistantView):
     url = "/api/cesta_compartida/products/{barcode}"
     name = "api:cesta_compartida:product_detail"
     requires_auth = False
+    cors_allowed = True
 
     def __init__(self, hass: HomeAssistant, storage: CestaStorage) -> None:
         """Initialize product detail view."""
         self.hass = hass
         self.storage = storage
-
-    async def options(self, request: web.Request, barcode: str) -> web.Response:
-        """Handle CORS preflight."""
-        return _cors_json_response({})
 
     async def get(self, request: web.Request, barcode: str) -> web.Response:
         """Lookup product by barcode locally and fallback to Open Food Facts."""
@@ -176,15 +167,12 @@ class CestaVisionView(HomeAssistantView):
     url = "/api/cesta_compartida/vision"
     name = "api:cesta_compartida:vision"
     requires_auth = False
+    cors_allowed = True
 
     def __init__(self, hass: HomeAssistant, api_key: str | None = None) -> None:
         """Initialize vision view."""
         self.hass = hass
         self.default_api_key = api_key
-
-    async def options(self, request: web.Request) -> web.Response:
-        """Handle CORS preflight."""
-        return _cors_json_response({})
 
     async def post(self, request: web.Request) -> web.Response:
         """Extract shopping items from image base64."""
